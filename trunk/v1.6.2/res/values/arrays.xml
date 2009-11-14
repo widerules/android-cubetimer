@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ins_times">
+        <item>1 second inspection</item>
+        <item>3 second inspection</item>
+        <item>5 second inspection</item>
+        <item>10 second inspection</item>
+        <item>15 second inspection</item>
+    </string-array>
+</resources>
