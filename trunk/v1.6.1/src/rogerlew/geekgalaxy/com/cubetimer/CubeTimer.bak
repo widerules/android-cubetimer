@@ -1,0 +1,134 @@
+package rogerlew.geekgalaxy.com.cubetimer;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+//import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Button;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class CubeTimer extends Activity {
+    private static final int COUNT_DOWN = 1; 
+    private static final int COUNT_UP = 2; 
+
+	private Scrambler scrambler = new Scrambler();
+	private TextView scramble;
+	private TextView time;
+	private Button button;
+	private Spinner spinner;
+	
+	Timer timer = new Timer();
+	
+	private int mode=0; // 0=stopped, 1=running
+	private long inspection_time=0;
+	private long t0=0; 
+	
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        
+        // Initialize scramble
+        scramble = (TextView)findViewById(R.id.scramble);
+        scramble.setText((CharSequence)scrambler.genScramble());
+        
+        // Initialize time
+        time = (TextView)findViewById(R.id.time);
+        	
+        // Initialize button
+        button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View view) {
+                 if (mode==0) { // in stop mode
+                	 String spinner_selection = (String)spinner.getSelectedItem();
+                	 if (spinner_selection.equals("no inspection"))
+                		 inspection_time=0;
+                	 else if (spinner_selection.equals("3 seconds"))
+                		 inspection_time=3*1000;
+                	 else if (spinner_selection.equals("5 seconds"))
+                		 inspection_time=5*1000;
+                	 else if (spinner_selection.equals("10 seconds"))
+                		 inspection_time=10*1000;
+                	 else if (spinner_selection.equals("15 seconds"))
+                		 inspection_time=15*1000;
+                	 
+                	 // Do inspection countdown
+                	 if (inspection_time!=0L) {
+                		 t0 = SystemClock.uptimeMillis();
+                	     timer.scheduleAtFixedRate(new TimerTask() {
+                	            public void run() {
+                	                mHandler.sendMessage(
+                	                    Message.obtain(
+                	                        mHandler, COUNT_DOWN, SystemClock.uptimeMillis()));
+                	            }
+                	        }, 0L, 1000L);
+                	 }
+                	 /*
+                	 // Start stopwatch
+                	 t0 = SystemClock.uptimeMillis();
+            	     timer.scheduleAtFixedRate(new TimerTask() {
+            	            public void run() {
+            	                mHandler.sendMessage(
+            	                    Message.obtain(
+            	                        mHandler, COUNT_UP, SystemClock.uptimeMillis()));
+            	            }
+            	        }, 0L, 1000L);
+                	 */
+//                	 scramble.setText(String.format("%d",inspection_time));
+                	 //time.setText("99:99:99");
+                	 button.setText("Stop");
+                	 mode=1;
+                } else { // in running mode
+                	 timer.cancel();
+                	 scramble.setText((CharSequence)scrambler.genScramble());
+                	 button.setText("Start");
+                	 time.setText("99:99:99");
+                	 mode=0;
+                }
+            }
+        }); 
+        
+        // Initialize spinner
+        spinner = (Spinner)findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.ins_times, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+    
+	private Handler mHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+		    long elapsed;
+		    
+		    switch (msg.what) {
+		        case COUNT_DOWN:
+		        	elapsed = SystemClock.uptimeMillis() - t0;
+		        	if (elapsed > inspection_time) {
+		        		timer.cancel();
+		        		//timer = new Timer();
+		        		time.setText("00:00:00");
+		        		break;
+		        	}
+		        	//time.setText((CharSequence)String.format("%l", elapsed));
+		        	time.setText(new Long((inspection_time-elapsed)/1000).toString());
+		        	break;
+		        case COUNT_UP:
+		        	elapsed = SystemClock.uptimeMillis() - t0;
+		        	time.setText("UP");
+		        	//time.setText(String.format("%l",msg.obj));
+		        	break;
+		        default:
+		            super.handleMessage(msg);
+		    }
+		}
+	};
+}
