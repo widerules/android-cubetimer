@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cube Timer</string>
+    <string name="help">Help</string>
+    <string name="instructions"><i>Tap to start. Tap to Stop.</i></string>
+</resources>

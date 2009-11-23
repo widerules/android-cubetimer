@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>Cube Timer Help</title>
+<style type="text/css">
+  ul{ margin-left: 0em; }
+  li{ margin-left: 1em; }
+  dd{ margin-left: 1em; }
+  a:link    {color:#7c992a; text-decoration: none;} /* unvisited link */
+  a:visited {color:#7c992a; text-decoration: none;} /* visited link */
+  a:hover   {color:#000000;                       } /* mouse over link */
+  a:active  {color:#7c992a; text-decoration: none;} /* selected link */
+</style>
+</head>
+<body>
+<h2 style="text-align: center;">Cube Timer Help</h2>
+<p style="text-align: center;"><img src="promo.png"/></p>
+<h3>Contents</h3>
+<hr/>
+<ul>
+<li><a href="#Description">Description</a></li>
+<li><a href="#Instructions">Instructions</a></li>
+<li><a href="#Requirements">System Requirements</a></li>
+<li><a href="#ScramblersNotation">Scramblers and Notation</a>
+<ul>
+<li><a href="#2x2x2">2x2x2</a></li>
+<li><a href="#3-7">3x3x3 - 7x7x7</a></li>
+<li><a href="#Megaminx">Megaminx</a></li>
+<li><a href="#Pyraminx">Pyraminx</a></li>
+<li><a href="#Square One">Square One</a></li>
+<li><a href="#UFO">UFO</a></li>
+</ul>
+</li>
+</ul>
+<br/>
+<h3><a name="Description">Description</a></h3>
+<hr/>
+<p>Generates scrambles for 2x2x2, 3x3x3, 4x4x4, 5x5x5, 6x6x6, and 7x7x7 cubical puzzle 
+(Rubik's Type Cubes), as well as scrambles for
+the Megaminx, Pyraminx, Square One, and UFO. It provides an inspection 
+countdown and stopwatch. The provides running statistics of the best, average,
+and standard deviation of the solve times. Each puzzle will keep it's own running
+log of statistics.</p>
+<p>This application uses the JavaScript scramble algorithms in the
+<a href="http://www.worldcubeassociation.org/regulations/scrambles.zip"></>scramblers.zip</a>
+hosted by the World Cube Association (WCA). Credit for the scramble algorithms goes to
+<a href="http://www.jaapsch.net/puzzles/" target="_blank">Jaap Scherphuis</a>,
+<a href="http://reddragon.nce.buttobi.net/" target="_blank">Syoji Takamatsu (Pyraminx)</a>, 
+<a href="http://garron.us/" target="_blank">Lucas Garron (Pyraminx)</a>, Michael Gottlieb (Pyraminx)
+Tom van der Zanden (2x2x2), and Clément Gallet. (<i>This project is not affiliated with the WCA</i>).I have made reasonable attempts to
+contact the authors listed above to request and obtain permission to use their work in this project.</p>
+<p>For some of the authors no contact information could be found. If you are one of the authors
+and do not want your work to be used in this non-commercial open-source project please contact me
+and I will remove it.</p>
+<p>It should be noted that while the code I have written is licensed under Apache 2, and is
+free to use for both commercial and non-commercial endeavors the scramble code remains
+intellectual property of their respective owners and should not be used commercially
+without their consent.</p>
+<p><b>I would like to acknowledge and express my personal gratitude to these Puzzle Gurus
+for their known or perhaps unknown contributions to this project and the puzzle community at large.</b></p>
+<br/>
+<h3><a name="Requirements">System Requirements</a></h3>
+<hr/>
+<p>This application run on Android 1.5, 1.6, and 2.0 on small, normal, and large screens.
+The caveat being the only physical device I have tested it on is my Motorola Droid.</p>
+<p>Feedback is welcome and appreciated (rogerlew@gmail.com).</p>
+<br/>
+<h3><a name="Instructions">Instructions</a></h3>
+<hr/>
+<ul>
+<li>Tap to start countdown</li>
+<li>Tap to stop timer</li>
+<li>App generates new scramble when stopped. (The 2x2x2 scrambler is a little slow.)</li>
+<li>Long pause on screen to clear records for the current puzzle, or all records can be cleared through the options menu.</li>
+<li>Use ringer volume controls to adjust beep volume. Beep can been toggled on and off via the options menu.</li>
+<li>To change the puzzle select "Set Puzzle" under the options menu. 
+<li>The inspection time is applied across all puzzles. Set your preferred inspection time through the options menu.</li>
+<li>App will remember your records and inspection time automatically.</li>
+<li>Make sure you exit the timer when you are done, it is configured to keep the screen on.</li>
+<li>Happy cubing!</li>
+</ul>
+<br/>
+<h3><a name="ScramblersNotation">Scramblers and Notation</a></h3>
+<h4><a name="2x2x2">2x2x2</a></h4>
+<hr/>
+<dl>
+  <dt><i></i>Author(s):</i></dt>
+  <dd>Tom van der Zanden, based on previous work by Jaap Scherphuis</dd>
+  <dt><i>Type:</i></dt>
+  <dd>WCA Compliant uniform random state scrambler</dd>
+  <dt><i>Version:</i></dt>
+  <dd>February 6, 2009</dd>
+  <dt><i>Notation:</i></dt>
+  <dd>Standard 2x2x2 FLUBRD notation is used by this scrambler</dd>
+</dl>
+<br/>
+<h4><a name="3-7">3x3x3 - 7x7x7</a></h4>
+<hr/>
+<dl>
+  <dt><i></i>Author(s):</i></dt>
+  <dd>Jaap Scherphuis</dd>
+  <dt><i>Type:</i></dt>
+  <dd>Random walk scrambler. Not WCA Compliant for 2x2x2 or 3x3x3 cubes (WCA uses
+      random state scrambler), but WCA compliant for 4x4x4 through 7x7x7
+      cubes.</dd>
+  <dt><i>Version:</i></dt>
+  <dd>January 25, 2009</dd>
+  <dt><i>Notation:</i></dt>
+  <dd>Standard FLUBRD notation is used for the 2x2x2 and 3x3x3 cubes. With 
+  4x4x4 and 5x5x5 cubes this is extended with lower case letters flubrd 
+  indicating a turn of an inner slice only, or in multi-slice mode the face
+  letter is followed by a w to indicate a 'wide' move. For even larger cubes,
+  inner slices are denoted by notation.<br/><br/>Tip: On a 2x2x2 cube normally all 6
+  faces can be turned but if Multi-Slice is on, only the RFU faces are used.</dd>
+</dl>
+<br/>
+<h4><a name="Megaminx">Megaminx</a></h4> 
+<hr/>
+<dl>
+  <dt><i></i>Author(s):</i></dt>
+  <dd>Program by Clément Gallet, based on earlier work by Jaap Scherphuis. Idea by Stefan Pochmann.</dd>
+  <dt><i>Type:</i></dt>
+  <dd>WCA Compliant random walk scrambler</dd>
+  <dt><i>Version:</i></dt>
+  <dd>2008<br/></dd>
+  <dt><i>Notation:</i></dt>
+  <dd><dl>
+  <dt>D</dt><dd>all layers below the U face together in one move</dd>
+  <dt>R</dt><dd>all layers right from the L face together in one move</dd>
+  <dt>++</dt><dd>2/5 move clockwise (144 degrees)</dd>
+  <dt>--</dt><dd>2/5 move counterclockwise (-144 degrees)</dd>
+  <dt>U</dt><dd>regular move of the U face, according to standard cube notation</dd></dl></dd>
+</dl>
+<br/>
+<h4><a name="Pyraminx">Pyraminx</a></h4>
+<hr/>
+<dl>
+  <dt><i></i>Author(s):</i></dt>
+  <dd>Base script written by Jaap Scherphuis.
+      Javascript written by Syoji Takamatsu.
+      Random-State modification by Lucas Garron 
+      in collaboration with Michael Gottlieb</dd>
+  <dt><i>Type:</i></dt>
+  <dd>WCA Compliant uniform random state scrambler</dd>
+  <dt><i>Version:</i></dt>
+  <dd>February 6, 2009</dd>
+  <dt><i>Notation:</i></dt>
+  <dd><img src="pyraminx.gif"/><br/>
+      Small letter: Rotate a vertex piece<br/><br/>
+      Capital letter: Rotate two layers at once.</dd>
+</dl>
+<br/>
+<h4><a name="Square One">Square One</a></h4>
+<hr/>
+<dl>
+  <dt><i></i>Author(s):</i></dt>
+  <dd>Jaap Scherphuis</dd>
+  <dt><i>Type:</i></dt>
+  <dd>WCA Compliant random walk scrambler</dd>
+  <dt><i>Version:</i></dt>
+  <dd>February 6, 2009</dd>
+  <dt><i>Notation:</i></dt>
+  <dd>Please see:<br/>&nbsp;&nbsp;&nbsp;<a href="http://www.jaapsch.net/puzzles/square1.htm#notation">Jaap's Square One notation page</a></dd>
+</dl>
+<br/>
+<h4><a name="UFO">UFO</a></h4>
+<hr/>
+<dl>
+  <dt><i></i>Author(s):</i></dt>
+  <dd>Jaap Scherphuis</dd>
+  <dt><i>Type:</i></dt>
+  <dd>WCA Compliant random walk scrambler</dd>
+  <dt><i>Version:</i></dt>
+  <dd>2006</dd>
+  <dt><i>Notation:</i></dt>
+  <dd><img src="rubikufo.gif"/><br/>
+      Hold the puzzle so that the yellow part lies directly at
+      the front, light grey on top and dark grey on the bottom.
+      The move B means turn over the right hand side, splitting at
+      the yellow seam. The move A means turn over the right hand
+      side splitting at the pink seam at the front right. The move
+      C means turn over the right hand side splitting at the red
+      seam at the front left. The move U followed by a number between
+      1 and 5 means turn the top layer clockwise that many steps.
+      Note that the red-blue piece at the bottom left never moves.</dd>
+</dl>
+</body>
+</html>
